@@ -204,6 +204,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 18),
                                 child: FFButtonWidget(
                                   onPressed: () async {
+                                    if (Navigator.of(context).canPop()) {
+                                      context.pop();
+                                    }
                                     context.pushNamed('auth_otp');
                                   },
                                   text: 'Sign in',
@@ -214,7 +217,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         0, 0, 0, 0),
                                     iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0, 0, 0, 0),
-                                    color: Colors.black,
+                                    color: FlutterFlowTheme.of(context).primary,
                                     textStyle: GoogleFonts.getFont(
                                       'Open Sans',
                                       color: Color(0xFFDEDEDE),

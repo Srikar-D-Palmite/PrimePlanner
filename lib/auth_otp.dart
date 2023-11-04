@@ -1,3 +1,4 @@
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -55,35 +56,44 @@ class _AuthOtpWidgetState extends State<AuthOtpWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: Color(0xFFEEEEEE),
+        appBar: AppBar(
+          backgroundColor: Color(0xFFEEEEEE),
+          automaticallyImplyLeading: false,
+          leading: FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30,
+            borderWidth: 1,
+            buttonSize: 60,
+            icon: Icon(
+              Icons.arrow_back_rounded,
+              color: Colors.black,
+              size: 30,
+            ),
+            onPressed: () async {
+              context.pop();
+            },
+          ),
+          title: Text(
+            ' ',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  fontFamily: 'Inter',
+                  color: Colors.black,
+                  fontSize: 22,
+                ),
+          ),
+          actions: [],
+          centerTitle: true,
+          elevation: 0,
+        ),
         body: SafeArea(
           top: true,
           child: Stack(
             children: [
               Align(
-                alignment: AlignmentDirectional(0.03, 0.96),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 15, 35),
-                  child: InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      context.safePop();
-                    },
-                    child: Icon(
-                      Icons.close_sharp,
-                      color: Color(0xFF040000),
-                      size: 45,
-                    ),
-                  ),
-                ),
-              ),
-              Align(
                 alignment: AlignmentDirectional(0.00, 0.00),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 15, 50),
@@ -240,14 +250,15 @@ class _AuthOtpWidgetState extends State<AuthOtpWidget> {
                                           iconPadding:
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0, 0, 0, 0),
-                                          color: Color(0xFF2797FF),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
                                           textStyle:
                                               FlutterFlowTheme.of(context)
                                                   .titleSmall
                                                   .override(
                                                     fontFamily: 'Manrope',
                                                     color: Colors.white,
-                                                    fontSize: 14,
+                                                    fontSize: 16,
                                                     fontWeight: FontWeight.w500,
                                                   ),
                                           elevation: 3,

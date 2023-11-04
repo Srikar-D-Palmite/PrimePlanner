@@ -1,6 +1,9 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -88,7 +91,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       height: 855,
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          colors: [Color(0xFFFFD4D4), Color(0xFFB8E2FF)],
+                          colors: [Color(0xFFFFE9E9), Color(0xFFD7F0FF)],
                           stops: [0, 1],
                           begin: AlignmentDirectional(1, -1),
                           end: AlignmentDirectional(-1, 1),
@@ -100,13 +103,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Divider(
                               height: 4,
                               thickness: 4,
                               indent: 140,
                               endIndent: 140,
-                              color: Color(0xFFE0E3E7),
+                              color: Color(0xFFFFEDED),
                             ),
                             Row(
                               mainAxisSize: MainAxisSize.max,
@@ -126,10 +130,60 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             20, 20, 20, 20),
-                                        child: Text(
-                                          'Next up:',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium,
+                                        child:
+                                            StreamBuilder<List<ScheduleRecord>>(
+                                          stream: queryScheduleRecord(
+                                            queryBuilder: (scheduleRecord) =>
+                                                scheduleRecord
+                                                    .where(
+                                                      'owner',
+                                                      isEqualTo:
+                                                          currentUserReference,
+                                                    )
+                                                    .orderBy('due_time'),
+                                            singleRecord: true,
+                                          ),
+                                          builder: (context, snapshot) {
+                                            // Customize what your widget looks like when it's loading.
+                                            if (!snapshot.hasData) {
+                                              return Center(
+                                                child: SizedBox(
+                                                  width: 50,
+                                                  height: 50,
+                                                  child:
+                                                      CircularProgressIndicator(
+                                                    valueColor:
+                                                        AlwaysStoppedAnimation<
+                                                            Color>(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            }
+                                            List<ScheduleRecord>
+                                                textScheduleRecordList =
+                                                snapshot.data!;
+                                            final textScheduleRecord =
+                                                textScheduleRecordList
+                                                        .isNotEmpty
+                                                    ? textScheduleRecordList
+                                                        .first
+                                                    : null;
+                                            return Text(
+                                              'Next up: ${textScheduleRecord?.itemName} - ${valueOrDefault<String>(
+                                                functions.retrieveTime(
+                                                    textScheduleRecord!
+                                                        .dueTime!),
+                                                '2022-2-2 00:00',
+                                              )}',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium,
+                                            );
+                                          },
                                         ),
                                       ),
                                     ),
@@ -138,22 +192,21 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               ],
                             ),
                             Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                              child: Text(
+                                'Everything you need. In one place.',
+                                textAlign: TextAlign.start,
+                                style: FlutterFlowTheme.of(context).bodyMedium,
+                              ),
+                            ),
+                            Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   10, 10, 10, 10),
                               child: Container(
                                 width: double.infinity,
                                 height: 601,
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    colors: [
-                                      Color(0xFFFFD9D9),
-                                      Color(0xFFBFE7FF)
-                                    ],
-                                    stops: [0, 1],
-                                    begin: AlignmentDirectional(1, -1),
-                                    end: AlignmentDirectional(-1, 1),
-                                  ),
-                                ),
+                                decoration: BoxDecoration(),
                                 child: GridView(
                                   padding: EdgeInsets.zero,
                                   gridDelegate:
@@ -205,7 +258,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   textAlign: TextAlign.center,
                                                   style: FlutterFlowTheme.of(
                                                           context)
-                                                      .displaySmall,
+                                                      .displaySmall
+                                                      .override(
+                                                        fontFamily: 'Inter',
+                                                        fontSize: 25,
+                                                      ),
                                                 ),
                                               ),
                                             ),
@@ -253,7 +310,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   textAlign: TextAlign.center,
                                                   style: FlutterFlowTheme.of(
                                                           context)
-                                                      .displaySmall,
+                                                      .displaySmall
+                                                      .override(
+                                                        fontFamily: 'Inter',
+                                                        fontSize: 25,
+                                                      ),
                                                 ),
                                               ),
                                             ),
@@ -301,7 +362,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   textAlign: TextAlign.center,
                                                   style: FlutterFlowTheme.of(
                                                           context)
-                                                      .displaySmall,
+                                                      .displaySmall
+                                                      .override(
+                                                        fontFamily: 'Inter',
+                                                        fontSize: 25,
+                                                      ),
                                                 ),
                                               ),
                                             ),
@@ -349,7 +414,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   textAlign: TextAlign.center,
                                                   style: FlutterFlowTheme.of(
                                                           context)
-                                                      .displaySmall,
+                                                      .displaySmall
+                                                      .override(
+                                                        fontFamily: 'Inter',
+                                                        fontSize: 25,
+                                                      ),
                                                 ),
                                               ),
                                             ),

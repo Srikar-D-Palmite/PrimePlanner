@@ -126,13 +126,13 @@ class _ShopMedsWidgetState extends State<ShopMedsWidget> {
                     onPressed: () {
                       print('Button pressed ...');
                     },
-                    text: 'Choose Images',
+                    text: 'Choose PDF',
                     options: FFButtonOptions(
                       width: 300,
                       height: 55,
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                       iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                      color: Color(0xFF33A8FB),
+                      color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleMedium.override(
                                 fontFamily: 'Plus Jakarta Sans',
@@ -147,11 +147,11 @@ class _ShopMedsWidgetState extends State<ShopMedsWidget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(-0.02, -0.76),
+                alignment: AlignmentDirectional(-0.04, -0.77),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8, 0, 16, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(8, 0, 16, 10),
                   child: Text(
-                    'Select images to upload',
+                    'Select pdf file to upload',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Plus Jakarta Sans',
                           color: Color(0xFF606A85),
