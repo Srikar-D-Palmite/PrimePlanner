@@ -5,7 +5,7 @@ import requests
 import csv
 import json
 
-app = Flask(_name_)
+app = Flask(__name__)
 
 @app.route('/process_pdf', methods=['GET'])
 def process_pdf():
@@ -77,5 +77,5 @@ def add_space_after_single_numbers(input_string):
         i += 1
     return result
 
-if _name_ == '_main_':
+if __name__ == '_main_':
     app.run(debug=True)
