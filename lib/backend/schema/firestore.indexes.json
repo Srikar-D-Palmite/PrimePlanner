@@ -1,0 +1,18 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "schedule",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "owner",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "due_time",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ]
+}
