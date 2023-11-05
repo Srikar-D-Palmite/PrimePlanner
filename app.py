@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from PyPDF2 import PdfReader
 import pandas as pd
 import requests
@@ -7,10 +7,15 @@ import json
 
 app = Flask(__name__)
 
-@app.route('/process_pdf', methods=['GET'])
+@app.route('/')
+def upload_file():
+    return render_template('upload.html')
+
+@app.route('/process', methods=['POST'])
 def process_pdf():
-    
-    reader = PdfReader('pres.pdf')
+    uploaded_file = request.files['pdf_file']
+
+    reader = PdfReader(uploaded_file)
     page = reader.pages[0]
     text = page.extract_text().lower()
     text = add_space_after_single_numbers(text)
